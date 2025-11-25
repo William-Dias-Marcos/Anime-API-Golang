@@ -1,0 +1,39 @@
+# Binaries
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+*.test
+*.out
+
+# Build folders
+bin/
+build/
+dist/
+release/
+
+# Go module caches
+pkg/mod/
+pkg/sumdb/
+go-build/
+
+# Vendor (se não quiser versionar)
+vendor/
+
+# Temp files
+tmp/
+*.tmp
+*.log
+*.cache
+
+# IDEs / Editors
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS Files
+.DS_Store
+Thumbs.db
