@@ -32,6 +32,7 @@ func main(){
 	})
 
 	server.GET("/animes", AnimeController.GetAnimes)
+	server.POST("/animes", AnimeController.CreateAnime)
 
 	server.Run(":8000")
 }

@@ -40,3 +40,29 @@ func (ar *AnimeRepository) GetAnimes() ([]model.Anime, error) {
 	
 	return animes, nil
 }
+
+func (ar *AnimeRepository) CreateAnime(anime model.Anime) (string, error) {
+	const query = `
+		INSERT INTO animes
+			(guid, title, description, genre, episodes, release_year, created_at, updated_at)
+		VALUES
+			(gen_random_uuid(), $1, $2, $3, $4, $5, NOW(), NOW())
+		RETURNING guid
+	`
+
+	var guid string
+	err := ar.connection.QueryRow(
+		query,
+		anime.Title,
+		anime.Description,
+		anime.Genre,
+		anime.Episodes,
+		anime.ReleaseYear,
+	).Scan(&guid)
+
+	if err != nil {
+		return "", err
+	}
+
+	return guid, nil
+}

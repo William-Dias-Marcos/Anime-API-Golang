@@ -15,6 +15,15 @@ func NewAnimeUsecase(repo repository.AnimeRepository) AnimeUsecase {
 	}
 }
 
-func (au * AnimeUsecase) GetAnimes() ([]model.Anime, error) {
+func (au *AnimeUsecase) GetAnimes() ([]model.Anime, error) {
 	return au.repository.GetAnimes()
+}
+
+func (au *AnimeUsecase) CretateAnime(anime model.Anime) (string, error) {
+
+	animeGuid, err := au.repository.CreateAnime(anime)
+	if err != nil {
+		return "", err
+	}
+	return animeGuid, nil
 }
