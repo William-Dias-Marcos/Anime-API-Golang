@@ -46,3 +46,15 @@ func (a *animeController) CreateAnime(ctx *gin.Context) {
 	ctx.JSON(http.StatusCreated, gin.H{"guid": guidCreatedAnime})
 	
 }
+
+func (a *animeController) DeleteAnime(ctx *gin.Context) {
+	guid := ctx.Param("guid")
+
+	err := a.animeUseCase.DeleteAnime(guid)
+	if err != nil {
+		ctx.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to delete anime"})
+		return
+	}
+
+	ctx.JSON(http.StatusOK, gin.H{"message": "Anime deleted successfully"})
+}

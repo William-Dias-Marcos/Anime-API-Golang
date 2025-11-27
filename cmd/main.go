@@ -33,6 +33,7 @@ func main(){
 
 	server.GET("/animes", AnimeController.GetAnimes)
 	server.POST("/animes", AnimeController.CreateAnime)
+	server.DELETE("/animes/:guid", AnimeController.DeleteAnime)
 
 	server.Run(":8000")
 }

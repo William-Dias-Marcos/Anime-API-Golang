@@ -66,3 +66,17 @@ func (ar *AnimeRepository) CreateAnime(anime model.Anime) (string, error) {
 
 	return guid, nil
 }
+
+func (ar *AnimeRepository) DeleteAnime(guid string) error {
+	const query = `
+		DELETE FROM animes
+		WHERE guid = $1
+	`
+
+	_, err := ar.connection.Exec(query, guid)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}

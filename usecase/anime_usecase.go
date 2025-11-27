@@ -27,3 +27,10 @@ func (au *AnimeUsecase) CretateAnime(anime model.Anime) (string, error) {
 	}
 	return animeGuid, nil
 }
+
+func (au *AnimeUsecase) DeleteAnime(guid string) error {
+	if err := au.repository.DeleteAnime(guid); err != nil{
+		return err
+	}
+	return nil
+}
